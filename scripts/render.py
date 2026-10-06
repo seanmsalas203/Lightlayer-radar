@@ -92,7 +92,8 @@ def decorate(image, valid_time, forecast, run=None):
     left, top = viewport()
     for name, lat, lon in [('Middletown', LAT, LON), ('Hartford', 41.7658, -72.6734),
                             ('New Haven', 41.3083, -72.9279), ('New London', 41.3557, -72.0995),
-                            ('Waterbury', 41.5582, -73.0515), ('Danbury', 41.3948, -73.4540),\n                            ('Bridgeport', 41.1792, -73.1894), ('Springfield', 42.1015, -72.5898)]:
+                            ('Waterbury', 41.5582, -73.0515), ('Danbury', 41.3948, -73.4540),
+                            ('Bridgeport', 41.1792, -73.1894), ('Springfield', 42.1015, -72.5898)]:
         x, y = pixel(lat, lon)
         x, y = round(x - left), round(y - top)
         if 10 < x < W - 10 and 40 < y < H - 40:
