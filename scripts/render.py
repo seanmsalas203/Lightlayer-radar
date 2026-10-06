@@ -18,7 +18,7 @@ from PIL import Image, ImageDraw
 UTC = dt.timezone.utc
 W, H, Z, SCALE = 320, 360, 6, 2
 # Public city center, never a street or home location.
-LAT, LON = 41.5623, -72.6506
+LAT, LON = 41.5623, -72.9000
 S3 = 'https://noaa-hrrr-bdp-pds.s3.amazonaws.com'
 CACHE = Path('.cache/radar')
 
@@ -197,7 +197,7 @@ def build(out, now=None):
     run = latest_run(now)
     start_lead = math.floor((now-run).total_seconds()/3600)+1
     end_lead = math.ceil((now-run).total_seconds()/3600)+24
-    generation = hashlib.sha256(json.dumps([past,run.isoformat(),start_lead,end_lead]).encode()).hexdigest()[:20]
+    generation = hashlib.sha256(json.dumps([past,run.isoformat(),start_lead,end_lead,Z,LAT,LON,'ct-west-v1']).encode()).hexdigest()[:20]
     folder = out / 'frames' / generation
     folder.mkdir(parents=True, exist_ok=True)
     frames = []
